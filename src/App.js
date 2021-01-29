@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable */
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+import react, { Component } from "react";
+import ValidationSample from './Validation/ValidationSample';
+import ScrollBox from './Scroll/ScrollBox';
+import IterationSample from './map/IterationSample';
+
+
+class App extends Component{
+  render(){
+    return(
+      <div>
+        <IterationSample />
+      </div>
+    )
+  }
 }
+
+
+
+
+// const App = () => {
+//   return (
+//     <>
+//       {/* <ValidationSample /> */}
+//       <ScrollBox></ScrollBox>
+//     </>
+//   );
+// };
 
 export default App;
