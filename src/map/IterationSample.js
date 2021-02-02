@@ -1,60 +1,49 @@
 import React, { useState } from "react";
 
 const IterationSample = () => {
-  const [input, setInput] = useState("");
-  const [names, setNames] = useState([
-    { id: 1, text: "안기원" },
-    { id: 2, text: "김윤정" },
-    { id: 3, text: "안영우" },
-    { id: 4, text: "안영주" },
+  const [state, setState] = useState([
+    { id: 1, text: "스타벅스" },
+    { id: 2, text: "이디야" },
+    { id: 3, text: "할리스" },
+    { id: 4, text: "투썸플레이스" },
   ]);
-  const [nextId, setNextId] = useState(5);
 
-  const nameList = names.map((name) => <li key={name.id} onDoubleClick={()=> onRemove(name.id)}>{name.text}</li>);
+  const [input, setInput] = useState('');
+  const [stateId, setStateId] = useState(5); 
+  const viewState = state.map((name) => <li key={name.id} onDoubleClick={()=>{onRemove(name.id)}}>{name.text}</li>);
 
   const onChange = (e) => {
-    setInput(e.target.value);
-  };
+    setInput(e.target.value)
+    }
 
   const onClick = () => {
-    const nextName = names.concat({
-      id: nextId,
-      text: input,
-    });
-    setNames(nextName);
-    setNextId(nextId + 1);
-    setInput("");
-  };
-
-  const onRemove = id => {
-    const onFilter = names.filter(name => name.id !== id)
-    setNames(onFilter)
+    const nextState = state.concat({
+      id: stateId,
+      text: input
+    })
+    setStateId(stateId + 1)
+    setState(nextState)
+    setInput("")
   }
 
-  const onKeyUp = (e) => {
-    if (e.key === "Enter") {
-      onClick();
-    }
-  };
+  const onRemove = id => {
+    const nextRemove = state.filter(name => name.id != id)
+    setState(nextRemove)
+  }
+    
+
   return (
     <>
-      <h1>
-        <ul>{nameList}</ul>
-      </h1>
-      <br /> <br />
-      <ul>
-        <h1>{input}</h1>
-      </ul>
-      <ul>
-        <input
-          type="string"
-          value={input}
-          onChange={onChange}
-          placeholder="추가할 내용을 적어주세요"
-          onKeyUp={onKeyUp}
-        ></input>
-        <button onClick={onClick}>추가</button>
-        <button onClick={onRemove}>삭제</button>
+      <h1>안녕하세요.</h1>
+      <ul>{viewState}</ul>
+
+     <ul><input
+      name='input'
+      placeholder='이름을 입력해주세요'
+      value={input}
+      onChange={onChange}></input>
+      <button onClick={onClick}>목록추가</button>
+      <button onClick={onRemove}>목록제거</button>
       </ul>
     </>
   );
